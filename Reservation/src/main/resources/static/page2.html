@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Dates</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Select Your Reservation Days</h2>
+    <form id="reservationForm">
+        <label><input type="checkbox" name="days" value="Monday"> Monday</label><br>
+        <label><input type="checkbox" name="days" value="Tuesday"> Tuesday</label><br>
+        <label><input type="checkbox" name="days" value="Wednesday"> Wednesday</label><br>
+        <label><input type="checkbox" name="days" value="Thursday"> Thursday</label><br>
+        <label><input type="checkbox" name="days" value="Friday"> Friday</label><br>
+        <button type="button" onclick="submitReservation()">Submit</button>
+    </form>
+
+    <script>
+        function submitReservation() {
+            let name = localStorage.getItem("userName");
+            let email = localStorage.getItem("userEmail");
+            let selectedDays = Array.from(document.querySelectorAll('input[name="days"]:checked'))
+                                  .map(checkbox => checkbox.value);
+
+            if (selectedDays.length === 0) {
+                alert("Please select at least one day.");
+                return;
+            }
+
+            let reservationData = { name, email, days: selectedDays };
+
+            fetch("http://localhost:8080/api/reservations", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(reservationData)
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                window.location.href = "page3.html"; // Go to View Reservations
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+h1 {
+    text-align: center; /* Center the text */
+    margin-top: 10px; /* Add some space from the top of the page */
+    font-size: 2em; /* Increase the font size */
+    font-family: Arial, sans-serif; /* Choose a nice font */
+    color: #333; /* Set a color for the title */
+}
+
+
+h1.page3{
+   
+        text-align: center;   /* Align the text in the center */
+        margin-top: 20px;      /* Space from the top */
+        margin-bottom: 20px;   /* Space below the heading */
+        font-family: Arial, sans-serif;  /* Choose a font */
+    
+}
+/* Center the form and its contents */
+body, html {
+    height: 100%; /* Full height */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Flexbox to center the form */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    font-family: Arial, sans-serif; /* Set a font for better appearance */
+    background-color: #f4f4f4; /* Light background color */
+}
+
+form {
+    background-color: grey; /* Form background color */
+    padding: 40px; /* Adjusted padding */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 350px; /* Adjusted width */
+    text-align: center; /* Center text */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column; /* Stack label and input vertically */
+    align-items: flex-center; /* Align text to the left */
+    margin-bottom: 15px; /* Space between fields */
+    width: 100%;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px; /* Space between label and input */
+}
+
+input {
+    width: 100%; /* Full width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%; /* Full width button */
+}
+
+button:hover {
+    background-color: #555;
+}

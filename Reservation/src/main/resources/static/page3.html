@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Reservations</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Your Reservations</h2>
+    <ul id="reservationList"></ul>
+    <button onclick="changeReservation()">Change Reservation</button>
+    <button onclick="removeReservation()">Remove Reservation</button>
+    <button onclick="goToIndex()">Back to Home</button>
+
+    <script>
+        function loadReservations() {
+            let name = localStorage.getItem("userName");
+            let email = localStorage.getItem("userEmail");
+
+            fetch(`http://localhost:8080/api/reservations?name=${name}&email=${email}`)
+                .then(response => response.json())
+                .then(data => {
+                    let list = document.getElementById("reservationList");
+                    list.innerHTML = "";
+
+                    if (!data.days || data.days.length === 0) {
+                        list.innerHTML = "<li>No reservations found</li>";
+                        return;
+                    }
+
+                    data.days.forEach(day => {
+                        let li = document.createElement("li");
+                        li.textContent = day;
+                        list.appendChild(li);
+                    });
+                });
+        }
+
+        function changeReservation() {
+            window.location.href = "page2.html"; // Go back to Choose Page
+        }
+
+        function removeReservation() {
+            let name = localStorage.getItem("userName");
+            let email = localStorage.getItem("userEmail");
+
+            fetch(`http://localhost:8080/api/reservations?name=${name}&email=${email}`, {
+                method: "DELETE"
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                window.location.href = "index.html"; // Redirect to Sign-in
+            });
+        }
+
+        function goToIndex() {
+            window.location.href = "index.html";
+        }
+
+        loadReservations(); // Load reservations when page opens
+    </script>
+</body>
+</html>
